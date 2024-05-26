@@ -19,6 +19,7 @@ Este aplicativo foi criado para praticar meus conhecimentos utilizando o React N
 - React navigation
 - Vector icons
 - Async storage
+- React native dotenv
 
 ## Rodando projeto
 
@@ -33,6 +34,8 @@ npm npx react-native run-android
 
 ## Atualizações
 
+* 0.0.2 - ⬆️ Insert Dotenv
+    * Install dotenv lib
 * 0.0.1 - 🎉 First commit
     * Initial project.
 

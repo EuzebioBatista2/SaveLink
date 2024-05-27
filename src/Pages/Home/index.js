@@ -9,7 +9,7 @@ export default function Home () {
 
   return (
     <Container>
-      <HomeBackground source={require('../../images/HomeBackground.jpg')}>
+      <HomeBackground source={require('../../images/Background.jpg')}>
         <LogoIcon>
           <Feather name="check-circle" size={120} color="#FF5757" />
         </LogoIcon>
@@ -21,7 +21,7 @@ export default function Home () {
           <Button onPress={() => navigation.navigate('Register')}>
             <ButtonText>Registrar</ButtonText>
           </Button>
-          <Button>
+          <Button onPress={() => navigation.navigate('TabRoutes', { screen: 'Dashboard' })}>
             <ButtonText>Entra sem uma conta</ButtonText>
           </Button>
         </Buttons>

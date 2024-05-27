@@ -17,8 +17,8 @@ export const BrandContainer = styled.View`
   flex: 1;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 20px;
-  margin-bottom: 120px;
+  margin-top: 40px;
+  margin-bottom: 200px;
 `;
 
 export const PrincipalLogo = styled.View`

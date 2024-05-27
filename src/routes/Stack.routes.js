@@ -3,6 +3,7 @@ import React from "react";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import TabRoutes from "./Tab.routes";
 
 const NavStack = createNativeStackNavigator();
 
@@ -40,6 +41,13 @@ export default function StackRoutes() {
             color: '#FFF'
           },
           headerTintColor: '#FFF'
+        }}
+      />
+      <NavStack.Screen
+        name="TabRoutes"
+        component={TabRoutes}
+        options={{
+          headerShown: false
         }}
       />
     </NavStack.Navigator>

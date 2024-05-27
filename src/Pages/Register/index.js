@@ -19,7 +19,6 @@ export default function Register() {
               <LineTwo />
             </View>
           </BrandContainer>
-
           <SignUp />
         </SignBackground >
       </ScrollView>

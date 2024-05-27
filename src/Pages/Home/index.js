@@ -1,10 +1,40 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { BrandContainer, Button, ButtonText, Buttons, Container, HomeBackground, LineOne, LineTwo, LogoIcon, PrincipalLogo, PrincipalText } from "./styles";
+import Feather from 'react-native-vector-icons/Feather';
+import { useNavigation } from "@react-navigation/native";
 
 export default function Home () {
+
+  const navigation = useNavigation();
+
   return (
-    <View>
-      <Text>Home page</Text>
-    </View>
+    <Container>
+      <HomeBackground source={require('../../images/HomeBackground.jpg')}>
+        <LogoIcon>
+          <Feather name="check-circle" size={120} color="#FF5757" />
+        </LogoIcon>
+        
+        <Buttons>
+          <Button onPress={() => navigation.navigate('Login')}>
+            <ButtonText>Login</ButtonText>
+          </Button>
+          <Button onPress={() => navigation.navigate('Register')}>
+            <ButtonText>Registrar</ButtonText>
+          </Button>
+          <Button>
+            <ButtonText>Entra sem uma conta</ButtonText>
+          </Button>
+        </Buttons>
+
+        <BrandContainer>
+          <PrincipalLogo>
+            <Feather name="save" size={60} color="#FF5757" />
+          </PrincipalLogo>
+          <PrincipalText>SAVE LINK</PrincipalText>
+          <LineOne />
+          <LineTwo />
+        </BrandContainer>
+      </HomeBackground>
+    </Container>
   );
 }

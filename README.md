@@ -34,6 +34,8 @@ npm npx react-native run-android
 
 ## Atualizações
 
+* 0.0.3 - 📦️ 💄 Create and update files
+    * Create pages: Home, Login and Register.
 * 0.0.2 - ⬆️ Insert Dotenv
     * Install dotenv lib
 * 0.0.1 - 🎉 First commit

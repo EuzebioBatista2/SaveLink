@@ -7,9 +7,9 @@ import Register from "../Pages/Register";
 const NavStack = createNativeStackNavigator();
 
 export default function StackRoutes() {
-  return(
+  return (
     <NavStack.Navigator>
-      <NavStack.Screen 
+      <NavStack.Screen
         name="Home"
         component={Home}
         options={{
@@ -19,10 +19,28 @@ export default function StackRoutes() {
       <NavStack.Screen
         name="Login"
         component={Login}
+        options={{
+          headerStyle: {
+            backgroundColor: '#1A1F1D',
+          },
+          headerTitleStyle: {
+            color: '#FFF'
+          },
+          headerTintColor: '#FFF'
+        }}
       />
       <NavStack.Screen
         name="Register"
         component={Register}
+        options={{
+          headerStyle: {
+            backgroundColor: '#1A1F1D',
+          },
+          headerTitleStyle: {
+            color: '#FFF'
+          },
+          headerTintColor: '#FFF'
+        }}
       />
     </NavStack.Navigator>
   );

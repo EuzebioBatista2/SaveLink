@@ -20,6 +20,7 @@ Este aplicativo foi criado para praticar meus conhecimentos utilizando o React N
 - Vector icons
 - Async storage
 - React native dotenv
+- Picker
 
 ## Rodando projeto
 
@@ -34,8 +35,11 @@ npm npx react-native run-android
 
 ## Atualizações
 
+* 0.0.6 - 📦️ 📝 Create Loading Component and Security on pages
+    * Create Loading component.
+    * Security on pages(Home, Login, Register, Dashboard, AddLink and Account).
 * 0.0.5 - 📝 Login function
-    * Create login function
+    * Create login function.
 * 0.0.4 - 📦️ 📝 Database connection established
     * Create AppContext.
     * Create Tab routes.

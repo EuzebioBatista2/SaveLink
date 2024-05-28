@@ -2,47 +2,52 @@ import React, { useContext, useState } from "react";
 import { Button, ButtonText, Container, Input, InputBox, Label, Title } from "./styles";
 import firebase from "../../database/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { Alert } from "react-native";
+import { Alert, Keyboard } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AppContext } from "../../Context/AppContext";
+import Loading from "../Loading";
 
 export default function SignIn() {
 
-  const { getUser } = useContext(AppContext);
+  const { getUser, activateLoading } = useContext(AppContext);
   const auth = firebase.auth;
   const navigation = useNavigation()
 
-  const [ email, setEmail ] = useState('');
-  const [ password, setPassword ] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   function handleLogin() {
+    activateLoading(true);
     signInWithEmailAndPassword(auth, email, password)
-    .then(async () => {
-      Alert.alert(
-        'Success',
-        'User loged in!',
-        [
-          {
-            text: 'Confirmar',
-            style: 'default'
-          }
-        ]
-      );
-      await getUser();
-      navigation.navigate('TabRoutes', { screen: 'Dashboard' })
-    })
-    .catch(() => {
-      Alert.alert(
-        'Error',
-        'Password or Email wrong',
-        [
-          {
-            text: 'Confirmar',
-            style: 'default'
-          }
-        ]
-      );
-    })
+      .then(async () => {
+        Alert.alert(
+          'Success',
+          'User loged in!',
+          [
+            {
+              text: 'Confirmar',
+              style: 'default'
+            }
+          ]
+        );
+        await getUser();
+        Keyboard.dismiss();
+        activateLoading(false);
+        navigation.navigate('TabRoutes', { screen: 'Dashboard' })
+      })
+      .catch(() => {
+        activateLoading(false);
+        Alert.alert(
+          'Error',
+          'Password or Email wrong',
+          [
+            {
+              text: 'Confirmar',
+              style: 'default'
+            }
+          ]
+        );
+      })
   }
 
 

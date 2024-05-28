@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, ButtonText, Container, Input, InputBox, Label, Title } from "./styles";
 import firebase from "../../database/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { Alert, Text } from "react-native";
+import { Alert, Keyboard, Text } from "react-native";
 import { ref, set } from "firebase/database";
 import { useNavigation } from "@react-navigation/native";
+import { AppContext } from "../../Context/AppContext";
+import Loading from "../Loading";
 
 export default function SignUp() {
 
   const auth = firebase.auth;
   const databse = firebase.database;
+
+  const { activateLoading } = useContext(AppContext);
 
   const navigation = useNavigation();
 
@@ -38,12 +42,15 @@ export default function SignUp() {
           ]
         );
 
+        Keyboard.dismiss();
+        activateLoading(false);
         navigation.navigate('TabRoutes', { screen: 'Dashboard' })
       })
 
   }
 
   function handleRegister() {
+    activateLoading(true);
     if (password !== confirmPassword) {
       return setWrongPassword(true);
     }
@@ -52,8 +59,18 @@ export default function SignUp() {
       .then((response) => {
         insertName(response.user.uid)
       })
-      .catch(error => {
-        alert(error)
+      .catch(() => {
+        activateLoading(false);
+        Alert.alert(
+          'Error',
+          'Something went wrong...',
+          [
+            {
+              text: 'Confirmar',
+              style: 'default'
+            }
+          ]
+        )
       })
   }
 
@@ -102,4 +119,5 @@ export default function SignUp() {
       </InputBox>
     </Container>
   );
+
 }

@@ -12,28 +12,31 @@ export default function AppProvider({ children }) {
   const database = firebase.database;
   const navigation = useNavigation();
   const [auth, setAuth] = useState({});
+  const [loading, setLoading] = useState(false);
 
-  function getUser() {
+  function activateLoading(value) {
+    setLoading(value)
+  }
+
+  async function getUser() {
     const user = getAuth();
     if (user.currentUser !== null) {
       const dbRef = ref(database, `${user.currentUser.uid}/name`)
-      get(dbRef).then((snapshot) => {
-        console.log(snapshot)
+      await get(dbRef).then((snapshot) => {
         setAuth({
           name: snapshot.val(),
           email: user.currentUser.email
         })
       })
+      activateLoading(false);
     } else {
+      activateLoading(false);
       navigation.navigate('Home');
     }
   }
 
-  useEffect(() => {
-    getUser();
-  }, []);
-
   function handleLogout() {
+    activateLoading(true);
     const user = getAuth();
     signOut(user)
       .then(() => {
@@ -51,11 +54,17 @@ export default function AppProvider({ children }) {
       })
 
     setAuth({})
+    activateLoading(false);
     navigation.navigate('Home');
   }
 
+  useEffect(() => {
+    activateLoading(true);
+    getUser();
+  }, []);
+
   return (
-    <AppContext.Provider value={{ auth, handleLogout, getUser }}>
+    <AppContext.Provider value={{ auth, handleLogout, getUser, loading, activateLoading }}>
       {children}
     </AppContext.Provider>
   );

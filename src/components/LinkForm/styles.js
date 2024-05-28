@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 
-export const TitlteInput = styled.TextInput`
-  height: 50px;
+export const LinkInput = styled.TextInput`
+  height: 55px;
   background-color: #484A49;
   padding: 10px;
   color: #FFF;
@@ -17,6 +17,7 @@ export const InputBox = styled.View`
 export const Label = styled.Text`
   font-size: 12px;
   color: #FFF;
+  margin-bottom: 4px;
 `;
 
 export const Button = styled.TouchableOpacity`
@@ -33,4 +34,10 @@ export const ButtonText = styled.Text`
   font-size: 18px;
   font-weight: bold;
   color: #FFF;
+`;
+
+export const SelectInput = styled.View`
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
 `;

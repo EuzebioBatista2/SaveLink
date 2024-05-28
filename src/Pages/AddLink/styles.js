@@ -18,13 +18,14 @@ export const Buttons = styled.View`
   width: 100%;
   flex-direction: row;
   justify-content: space-evenly;
+  margin-bottom: 30px;
 `;
 
 export const Button = styled.TouchableOpacity`
   height: 40px;
   width: 100px;
   border-radius: 4px;
-  background-color: ${props => props.checked ? '#E63F31' : '#5F6362'};
+  background-color: ${props => props.checked ? '#FF5757' : '#5F6362'};
   align-items: center;
   justify-content: center;
   border: 1px solid #fff;
@@ -34,4 +35,8 @@ export const ButtonText = styled.Text`
   font-size: 18px;
   font-weight: bold;
   color: #FFF
+`;
+
+export const Forms = styled.View`
+  width: 100%;
 `;

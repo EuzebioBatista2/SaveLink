@@ -35,22 +35,30 @@ npm npx react-native run-android
 
 ## Atualizações
 
-* 0.0.6 - 📦️ 📝 Create Loading Component and Security on pages
+* 0.3.0 - 📝 Create toggleButton and Register link
+    * Toggle button
+    * Register link
+
+* 0.2.0 - 📦️ 📝 Create Loading Component and Security on pages
     * Create Loading component.
     * Security on pages(Home, Login, Register, Dashboard, AddLink and Account).
-* 0.0.5 - 📝 Login function
+
+* 0.1.2 - 📝 Login function
     * Create login function.
-* 0.0.4 - 📦️ 📝 Database connection established
+
+* 0.1.1 - 📦️ 📝 Database connection established
     * Create AppContext.
     * Create Tab routes.
     * Create Register, Login and Logout functions.
-* 0.0.3 - 📦️ 💄 Create and update files
+
+* 0.1.0 - 📦️ 💄 Create and update files
     * Create pages: Home, Login and Register.
+
 * 0.0.2 - ⬆️ Insert Dotenv
     * Install dotenv lib.
+
 * 0.0.1 - 🎉 First commit
     * Initial project.
-
 
 ## Informações adicionais
 

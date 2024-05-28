@@ -10,29 +10,31 @@ export const AppContext = createContext({});
 export default function AppProvider({ children }) {
 
   const database = firebase.database;
-  const user = getAuth();
   const navigation = useNavigation();
-  const [ auth, setAuth ] = useState({});
+  const [auth, setAuth] = useState({});
+
+  function getUser() {
+    const user = getAuth();
+    if (user.currentUser !== null) {
+      const dbRef = ref(database, `${user.currentUser.uid}/name`)
+      get(dbRef).then((snapshot) => {
+        console.log(snapshot)
+        setAuth({
+          name: snapshot.val(),
+          email: user.currentUser.email
+        })
+      })
+    } else {
+      navigation.navigate('Home');
+    }
+  }
 
   useEffect(() => {
-    function getUser() {
-      if (user.currentUser !== null) {
-        const dbRef = ref(database, `${user.uid}/name`)
-        get(dbRef).then((snapshot) => {
-          setAuth({
-            name: snapshot.val(),
-            email: user.email
-          })
-        })
-      } else {
-        navigation.navigate('Home');
-      }
-    }
-
     getUser();
-  }, [])
+  }, []);
 
   function handleLogout() {
+    const user = getAuth();
     signOut(user)
       .then(() => {
 
@@ -48,12 +50,12 @@ export default function AppProvider({ children }) {
         )
       })
 
-      setAuth({})
-      navigation.navigate('Home');
+    setAuth({})
+    navigation.navigate('Home');
   }
 
   return (
-    <AppContext.Provider value={{ auth, handleLogout }}>
+    <AppContext.Provider value={{ auth, handleLogout, getUser }}>
       {children}
     </AppContext.Provider>
   );

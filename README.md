@@ -34,7 +34,9 @@ npm npx react-native run-android
 
 ## Atualizações
 
-* 0.0.4 = 📦️ 📝 Database connection established
+* 0.0.5 - 📝 Login function
+    * Create login function
+* 0.0.4 - 📦️ 📝 Database connection established
     * Create AppContext.
     * Create Tab routes.
     * Create Register, Login and Logout functions.

@@ -1,9 +1,6 @@
 import React, { useContext } from "react";
 import { AccountBackground, ButtonText, Container, InfomationsText, Informations, LogoutButton, Title } from "./styles";
 import { AppContext } from "../../Context/AppContext";
-import { getAuth, signOut } from "firebase/auth";
-import { Alert } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 export default function Account () {
 

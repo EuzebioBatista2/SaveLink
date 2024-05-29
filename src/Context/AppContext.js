@@ -13,9 +13,16 @@ export default function AppProvider({ children }) {
   const navigation = useNavigation();
   const [auth, setAuth] = useState({});
   const [loading, setLoading] = useState(false);
+  const [webPage, setWebPage] = useState(false);
+  const [urlPage, setUrlPage] = useState('')
 
-  function activateLoading(value) {
+  function activateLoading(value ) {
     setLoading(value)
+  }
+
+  function activateWebPage(value, url) {
+    setWebPage(value)
+    setUrlPage(url)
   }
 
   async function getUser() {
@@ -64,7 +71,16 @@ export default function AppProvider({ children }) {
   }, []);
 
   return (
-    <AppContext.Provider value={{ auth, handleLogout, getUser, loading, activateLoading }}>
+    <AppContext.Provider value={{ 
+      auth, 
+      handleLogout, 
+      getUser, 
+      loading, 
+      activateLoading,
+      webPage,
+      activateWebPage,
+      urlPage
+    }}>
       {children}
     </AppContext.Provider>
   );

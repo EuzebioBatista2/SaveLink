@@ -21,6 +21,7 @@ Este aplicativo foi criado para praticar meus conhecimentos utilizando o React N
 - Async storage
 - React native dotenv
 - Picker
+- WebView
 
 ## Rodando projeto
 
@@ -34,6 +35,10 @@ npm npx react-native run-android
 
 
 ## Atualizações
+
+* 0.4.0 - 📦️ 📝 Card links created
+    * Add new dependency
+    * Cards and functions  created
 
 * 0.3.0 - 📝 Create toggleButton and Register link
     * Toggle button

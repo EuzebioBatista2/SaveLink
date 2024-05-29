@@ -15,7 +15,7 @@ export default function AddLink () {
   const database = firebase.database;
   const navigation = useNavigation();
 
-  const { getUser, loading, activateLoading } = useContext(AppContext);
+  const { getUser, loading, activateLoading, getLinks } = useContext(AppContext);
 
   const [ option, setOption ] = useState('');
   const [ options, setOptions ] = useState([]);
@@ -25,10 +25,11 @@ export default function AddLink () {
   }
 
   async function submitLink(data) {
+    const capitalizeTitle = data.name.charAt(0).toUpperCase() + data.name.slice(1);
     activateLoading(true);
     const userUid = getAuth().currentUser.uid;
     const dbRef = ref(database, `${userUid}/links/${data.key}/items`);
-    const linkName = data.name;
+    const linkName = capitalizeTitle;
     const linkUrl = data.url
     await update(dbRef, {
       [linkName]: linkUrl
@@ -48,6 +49,7 @@ export default function AddLink () {
       Keyboard.dismiss();
       setOption('');
       activateLoading(false);
+      getLinks();
       navigation.navigate('Dashboard');
     })
     .catch(() => {
@@ -67,12 +69,13 @@ export default function AddLink () {
   }
 
   async function submitContainer(title) {
+    const capitalizeTitle = title.charAt(0).toUpperCase() + title.slice(1);
     activateLoading(true);
     const userUid = getAuth().currentUser.uid;
     const key = push(ref(database, `${userUid}/links`)).key
     const dbRef = ref(database, `${userUid}/links/${key}`);
     await set(dbRef, {
-      title: title
+      title: capitalizeTitle
     })
     .then(() => {
       Alert.alert(
@@ -89,6 +92,8 @@ export default function AddLink () {
       Keyboard.dismiss();
       setOption('');
       activateLoading(false);
+      getLinks();
+      getSelect();
       navigation.navigate('Dashboard');
     })
     .catch(() => {

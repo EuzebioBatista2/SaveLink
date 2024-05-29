@@ -14,7 +14,8 @@ export default function AppProvider({ children }) {
   const [auth, setAuth] = useState({});
   const [loading, setLoading] = useState(false);
   const [webPage, setWebPage] = useState(false);
-  const [urlPage, setUrlPage] = useState('')
+  const [urlPage, setUrlPage] = useState('');
+  const [data, setData] = useState([]);
 
   function activateLoading(value ) {
     setLoading(value)
@@ -23,6 +24,27 @@ export default function AppProvider({ children }) {
   function activateWebPage(value, url) {
     setWebPage(value)
     setUrlPage(url)
+  }
+
+  async function getLinks() {
+    activateLoading(true);
+    const userUid = getAuth().currentUser.uid;
+    const dbRef = ref(database, `${userUid}/links`);
+    const itemList = [];
+    await get(dbRef)
+      .then((snapshot) => {
+        snapshot.forEach(children => {
+          let item = {
+            name: children.val().title,
+            links: children.val().items
+          }
+          itemList.push(item)
+        })
+
+        itemList.reverse()
+        setData(itemList)
+      })
+    activateLoading(false);
   }
 
   async function getUser() {
@@ -79,7 +101,9 @@ export default function AppProvider({ children }) {
       activateLoading,
       webPage,
       activateWebPage,
-      urlPage
+      urlPage,
+      getLinks,
+      data
     }}>
       {children}
     </AppContext.Provider>

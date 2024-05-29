@@ -27,7 +27,7 @@ export const Buttons = styled.View`
 
 export const Button = styled.TouchableOpacity`
   width: 300px;
-  height: 40px;
+  height: 50px;
   align-items: center;
   justify-content: center;
   background-color: #FF5757;

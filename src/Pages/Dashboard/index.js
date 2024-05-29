@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { CloseButton, Container, DashboardBackground, Title } from "./styles";
+import { CloseButton, Container, DashboardBackground, MessegeContainer, MessegeEmpty, Title } from "./styles";
 import { AppContext } from "../../Context/AppContext";
 import Loading from "../../components/Loading";
 import { getAuth } from "firebase/auth";
@@ -19,31 +19,10 @@ export default function Dashboard() {
     activateLoading, 
     webPage, 
     activateWebPage,
-    urlPage
+    urlPage,
+    getLinks,
+    data
   } = useContext(AppContext);
-
-  const [data, setData] = useState([]);
-
-  async function getLinks() {
-    activateLoading(true);
-    const userUid = getAuth().currentUser.uid;
-    const dbRef = ref(database, `${userUid}/links`);
-    const itemList = [];
-    await get(dbRef)
-      .then((snapshot) => {
-        snapshot.forEach(children => {
-          let item = {
-            name: children.val().title,
-            links: children.val().items
-          }
-          itemList.push(item)
-        })
-
-        itemList.reverse()
-        setData(itemList)
-      })
-    activateLoading(false);
-  }
 
   useEffect(() => {
     activateLoading(true);
@@ -73,14 +52,20 @@ export default function Dashboard() {
     return (
       <Container>
         <DashboardBackground source={require('../../images/Background.jpg')}>
-          <FlatList
-            data={data}
-            keyExtractor={(item) => item.name}
-            renderItem={({ item }) => (
-              <CardItem list={item} />
-            )}
-            showsVerticalScrollIndicator={false}
-          />
+          {data.length === 0 ? (
+            <MessegeContainer>
+              <MessegeEmpty>Não há nenhum item registrado no momento</MessegeEmpty>
+            </MessegeContainer>
+          ) : (
+            <FlatList
+              data={data}
+              keyExtractor={(item) => item.name}
+              renderItem={({ item }) => (
+                <CardItem list={item} />
+              )}
+              showsVerticalScrollIndicator={false}
+            />
+          )}
         </DashboardBackground>
       </Container>
     );

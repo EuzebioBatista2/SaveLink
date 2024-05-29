@@ -19,6 +19,7 @@ export const UrlButton = styled.TouchableOpacity`
 `;
 
 export const UrlText = styled.Text`
+  width: 90%;
   font-size: 16px;
   color: #027CC1;
   text-decoration: underline;

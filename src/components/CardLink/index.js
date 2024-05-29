@@ -1,15 +1,15 @@
 import React, { useContext, useState } from "react";
 import { BodyItem, LinkText, UrlButton, UrlText } from "./styles";
-import { Clipboard, ToastAndroid, View } from "react-native";
+import { ToastAndroid, View } from "react-native";
 import { AppContext } from "../../Context/AppContext";
+import Clipboard from "@react-native-clipboard/clipboard";
 
 export default function CardLink({ list }) {
 
   const { webPage, activateWebPage } = useContext(AppContext);
-  const [link, setLink] = useState(list.item[1])
 
   function handleCopy () {
-    Clipboard.setString(link);
+    Clipboard.setString(list.item[1]);
     ToastAndroid.show('Texto copiado!', ToastAndroid.SHORT);
   };
 

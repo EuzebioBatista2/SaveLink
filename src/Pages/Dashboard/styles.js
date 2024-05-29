@@ -32,3 +32,15 @@ export const CloseButton = styled.TouchableOpacity`
   top: 20px;
   z-index: 10;
 `;
+
+export const MessegeContainer = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const MessegeEmpty = styled.Text`
+  font-size: 20px;
+  color: #FFF;
+  text-align: center;
+`;

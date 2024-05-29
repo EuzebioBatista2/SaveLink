@@ -33,10 +33,10 @@ export const InfomationsText = styled.Text`
 
 export const LogoutButton = styled.TouchableOpacity`
   width: 300px;
-  height: 40px;
+  height: 50px;
   align-items: center;
   justify-content: center;
-  background-color: #D23A2E;
+  background-color: #FF5757;
   border-radius: 4px;
 `;
 

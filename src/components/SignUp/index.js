@@ -11,7 +11,7 @@ import Loading from "../Loading";
 export default function SignUp() {
 
   const auth = firebase.auth;
-  const databse = firebase.database;
+  const database = firebase.database;
 
   const { activateLoading } = useContext(AppContext);
 
@@ -24,7 +24,7 @@ export default function SignUp() {
   const [wrongPassword, setWrongPassword] = useState(false);
 
   function insertName(uid) {
-    const dbRef = ref(databse, `${uid}`);
+    const dbRef = ref(database, `${uid}`);
 
     set(dbRef, {
       name: name
@@ -46,7 +46,6 @@ export default function SignUp() {
         activateLoading(false);
         navigation.navigate('TabRoutes', { screen: 'Dashboard' })
       })
-
   }
 
   function handleRegister() {

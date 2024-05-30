@@ -44,3 +44,18 @@ export const MessegeEmpty = styled.Text`
   color: #FFF;
   text-align: center;
 `;
+
+export const ErrorPage = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #5F6362;
+  padding: 20px;
+`;
+
+export const ErrorMessage = styled.Text`
+  font-size: 20px;
+  color: #FFF;
+  text-align: center;
+`;

@@ -11,6 +11,7 @@ import {
   APP_ID 
 } from '@env';
 import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey:API_KEY,
@@ -24,11 +25,13 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const storage = getStorage(app);
 const auth = initializeAuth(app, {
   persistence: getReactNativePersistence(AsyncStorage)
 })
 
 export default {
   database,
-  auth
+  auth,
+  storage
 }

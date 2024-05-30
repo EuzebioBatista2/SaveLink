@@ -41,3 +41,9 @@ export const SelectInput = styled.View`
   overflow: hidden;
   margin-bottom: 10px;
 `;
+
+export const MessegeEmpty = styled.Text`
+  font-size: 20px;
+  color: #FFF;
+  text-align: center;
+`;

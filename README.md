@@ -37,6 +37,10 @@ npm npx react-native run-android
 
 ## Atualizações
 
+* 0.5.1 - 📝 Account and Dashabord pages
+    * Add function to change the profile photo
+    * Add edit and remove on Dashboard page
+    
 * 0.5.0 - 📦️ 📝 AutoLogin
     * Add new dependency(Clipboard)
     * AutoLogin created

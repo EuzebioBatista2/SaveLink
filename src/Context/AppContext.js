@@ -16,6 +16,13 @@ export default function AppProvider({ children }) {
   const [webPage, setWebPage] = useState(false);
   const [urlPage, setUrlPage] = useState('');
   const [data, setData] = useState([]);
+  const [ selectOptions, setSelectOptions ] = useState([]);
+  const [ option, setOption ] = useState('');
+
+
+  function handleSetOption(value) {
+    setOption(value)
+  }
 
   function activateLoading(value ) {
     setLoading(value)
@@ -26,8 +33,26 @@ export default function AppProvider({ children }) {
     setUrlPage(url)
   }
 
+  async function getSelect() {
+    const userUid = getAuth().currentUser.uid
+    const dbRef = ref(database, `${userUid}/links`);
+    let optionsList = [];
+    await get(dbRef)
+      .then(snapshot => {
+        snapshot.forEach((children) => {
+          const item = {
+            key: children.key,
+            title: children.val().title
+          }
+          optionsList.push(item)
+        })
+        optionsList.reverse();
+        setSelectOptions(optionsList);
+      })
+    activateLoading(false);
+  }
+
   async function getLinks() {
-    activateLoading(true);
     const userUid = getAuth().currentUser.uid;
     const dbRef = ref(database, `${userUid}/links`);
     const itemList = [];
@@ -35,6 +60,7 @@ export default function AppProvider({ children }) {
       .then((snapshot) => {
         snapshot.forEach(children => {
           let item = {
+            key: children.key,
             name: children.val().title,
             links: children.val().items
           }
@@ -103,7 +129,11 @@ export default function AppProvider({ children }) {
       activateWebPage,
       urlPage,
       getLinks,
-      data
+      data,
+      getSelect,
+      selectOptions,
+      handleSetOption,
+      option
     }}>
       {children}
     </AppContext.Provider>

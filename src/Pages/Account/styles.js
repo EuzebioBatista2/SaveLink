@@ -14,6 +14,36 @@ export const AccountBackground = styled.ImageBackground`
   padding: 20px;
 `;
 
+export const ProfileImage = styled.Image`
+  height: 150px;
+  width: 150px;
+  border-radius: 75px;
+  border: 1px solid #FFF;
+`;
+
+export const ButtonsContainer = styled.View`
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 20px 0px;
+`;
+
+export const ImageButton = styled.TouchableOpacity`
+  height: 40px;
+  width: 100px;
+  border-radius: 4px;
+  background-color: #FF5757;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #fff;
+`;
+
+export const ImageButtonText = styled.Text`
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFF
+`;
+
 export const Title = styled.Text`
   font-size: 30px;
   color: #FFF;
@@ -38,6 +68,7 @@ export const LogoutButton = styled.TouchableOpacity`
   justify-content: center;
   background-color: #FF5757;
   border-radius: 4px;
+  border: 1px solid #fff;
 `;
 
 export const ButtonText = styled.Text`

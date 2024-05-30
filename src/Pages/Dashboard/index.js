@@ -1,10 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import { CloseButton, Container, DashboardBackground, MessegeContainer, MessegeEmpty, Title } from "./styles";
+import {
+  CloseButton,
+  Container,
+  DashboardBackground,
+  MessegeContainer,
+  MessegeEmpty,
+  ErrorPage,
+  ErrorMessage
+} from "./styles";
 import { AppContext } from "../../Context/AppContext";
 import Loading from "../../components/Loading";
-import { getAuth } from "firebase/auth";
-import firebase from "../../database/firebase";
-import { get, ref } from "firebase/database";
 import { FlatList, View } from "react-native";
 import CardItem from "../../components/CardItem";
 import { WebView } from "react-native-webview";
@@ -12,17 +17,23 @@ import Feather from 'react-native-vector-icons/Feather'
 
 export default function Dashboard() {
 
-  const database = firebase.database;
-  const { 
-    getUser, 
-    loading, 
-    activateLoading, 
-    webPage, 
+  const [errorPage, setErrorPage] = useState(false);
+
+  const {
+    getUser,
+    loading,
+    activateLoading,
+    webPage,
     activateWebPage,
     urlPage,
     getLinks,
     data
   } = useContext(AppContext);
+
+  function handleCloseButton() {
+    activateWebPage(false)
+    setErrorPage(false);
+  }
 
   useEffect(() => {
     activateLoading(true);
@@ -30,6 +41,7 @@ export default function Dashboard() {
   }, [])
 
   useEffect(() => {
+    activateLoading(true);
     getLinks();
   }, [])
 
@@ -40,13 +52,29 @@ export default function Dashboard() {
   }
   else if (webPage) {
     return (
-      <View style={{ flex: 1, position: 'relative' }}>
-        <WebView source={{ uri: urlPage}} />
-        <CloseButton onPress={() => activateWebPage(false)}>
-          <Feather name="x" color="#FFF" size={25} />
-        </CloseButton>
-      </View>
-    )
+      <>
+        {errorPage ? (
+          <ErrorPage>
+            <ErrorMessage>
+              Conteúdo não encontrado, página web não existe.
+            </ErrorMessage>
+            <CloseButton onPress={handleCloseButton}>
+              <Feather name="x" color="#FFF" size={25} />
+            </CloseButton>
+          </ErrorPage>
+        ) : (
+          <View style={{ flex: 1, position: 'relative' }}>
+            <WebView
+              source={{ uri: urlPage }}
+              onError={() => setErrorPage(true)}
+            />
+            <CloseButton onPress={handleCloseButton}>
+              <Feather name="x" color="#FFF" size={25} />
+            </CloseButton>
+          </View>
+        )}
+      </>
+    );
   }
   else {
     return (
@@ -72,3 +100,4 @@ export default function Dashboard() {
   }
 
 }
+

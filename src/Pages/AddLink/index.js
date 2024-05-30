@@ -15,13 +15,20 @@ export default function AddLink () {
   const database = firebase.database;
   const navigation = useNavigation();
 
-  const { getUser, loading, activateLoading, getLinks } = useContext(AppContext);
+  const { 
+    getUser, 
+    loading, 
+    activateLoading, 
+    getLinks, 
+    getSelect, 
+    selectOptions, 
+    handleSetOption,
+    option
+  } = useContext(AppContext);
 
-  const [ option, setOption ] = useState('');
-  const [ options, setOptions ] = useState([]);
 
   function buttonToggle(option) {
-    setOption(option)
+    handleSetOption(option)
   }
 
   async function submitLink(data) {
@@ -47,8 +54,8 @@ export default function AddLink () {
       );
 
       Keyboard.dismiss();
-      setOption('');
-      activateLoading(false);
+      handleSetOption('');
+      activateLoading(true);
       getLinks();
       navigation.navigate('Dashboard');
     })
@@ -90,9 +97,10 @@ export default function AddLink () {
       );
 
       Keyboard.dismiss();
-      setOption('');
-      activateLoading(false);
+      handleSetOption('');
+      activateLoading(true);
       getLinks();
+      activateLoading(true);
       getSelect();
       navigation.navigate('Dashboard');
     })
@@ -110,27 +118,6 @@ export default function AddLink () {
       activateLoading(false);
     })
   }
-
-  async function getSelect() {
-    activateLoading(true);
-    const userUid = getAuth().currentUser.uid
-    const dbRef = ref(database, `${userUid}/links`);
-    let optionsList = [];
-    await get(dbRef)
-      .then(snapshot => {
-        snapshot.forEach((children) => {
-          const item = {
-            key: children.key,
-            title: children.val().title
-          }
-          optionsList.push(item)
-        })
-        optionsList.reverse();
-        setOptions(optionsList);
-      })
-    activateLoading(false);
-  }
-
 
   useEffect(() => {
     activateLoading(true);
@@ -164,7 +151,7 @@ export default function AddLink () {
 
           <Forms>
             {option === 'Container' || option === 'Link' ? (
-              option === 'Container' ? <ContainerForm submit={submitContainer} /> : <LinkForm list={options} submit={submitLink} />
+              option === 'Container' ? <ContainerForm submit={submitContainer} /> : <LinkForm list={selectOptions} submit={submitLink} />
             ) : (
               <Text style={{ color: '#5F6362', textAlign: 'center' }}>Nenhuma opções selecionada</Text>
             )}

@@ -14,17 +14,37 @@ export const CardHeader = styled.View`
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  height: 50px;
+  min-height: 50px;
 `;
 
 export const HeaderText = styled.Text`
+  width: 70%;
   font-size: 20px;
   font-weight: bold;
-  text-transform: capitalize;
   color: #FFF;
 `;
 
+export const HeaderTextInput = styled.TextInput`
+  width: 70%;
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFF;
+  margin: 0px;
+  padding: 0px;
+`;
+
+export const Options = styled.View`
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+`;
+
+export const EditButton = styled.TouchableOpacity``;
 export const ToogleButton = styled.TouchableOpacity``;
+
+export const CloseButton = styled.TouchableOpacity``;
+export const ChceckButton = styled.TouchableOpacity``;
+export const DeleteButton = styled.TouchableOpacity``;
 
 export const CardBody = styled.View`
   width: 100%;

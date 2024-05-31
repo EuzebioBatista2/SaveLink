@@ -37,6 +37,9 @@ npm npx react-native run-android
 
 ## Atualizações
 
+* 0.5.3 - 📝 New background on dashboard card
+    * New color #2B2C32 -> #464646
+
 * 0.5.2 - 📝 Translate words and new design
     * Translate words
     * New design

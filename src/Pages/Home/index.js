@@ -1,8 +1,24 @@
-import React, { useContext, useEffect, useState } from "react";
-import { BrandContainer, Button, ButtonText, Buttons, Container, HomeBackground, LineOne, LineTwo, LogoIcon, PrincipalLogo, PrincipalText } from "./styles";
+import React, { useContext, useEffect } from "react";
+import { 
+  BrandContainer, 
+  Button, 
+  ButtonText, 
+  Buttons, 
+  Container, 
+  HomeBackground, 
+  LineOne, 
+  LineTwo, 
+  LogoIcon, 
+  PrincipalLogo, 
+  PrincipalText 
+} from "./styles";
 import Feather from 'react-native-vector-icons/Feather';
 import { useNavigation } from "@react-navigation/native";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { 
+  createUserWithEmailAndPassword, 
+  getAuth, 
+  signInWithEmailAndPassword 
+} from "firebase/auth";
 import { AppContext } from "../../Context/AppContext";
 import Loading from "../../components/Loading";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -35,13 +51,13 @@ export default function Home() {
     const dbRef = ref(database, `${uid}`);
 
     set(dbRef, {
-      name: 'localUser'
+      name: 'Usuário local'
     })
       .then(() => {
 
         Alert.alert(
-          'Success',
-          'Register successfully!',
+          'Sucesso',
+          'Registro realizado com sucesso!',
           [
             {
               text: 'Confirmar',
@@ -60,9 +76,11 @@ export default function Home() {
     activateLoading(true)
     await AsyncStorage.getItem('@SAVELINK').then(value => {
       if (value === null) {
-        const randomString = getRandomString(8);
-        const fakeEmail = `${randomString}@${randomString}.com`
-        const fakePassword = randomString
+        const randomName = getRandomString(8);
+        const randomPassword = getRandomString(8);
+
+        const fakeEmail = `${randomName}@${randomName}.savelink`
+        const fakePassword = randomPassword
 
         const stringValue = JSON.stringify({
           email: fakeEmail,
@@ -78,8 +96,8 @@ export default function Home() {
           .catch(() => {
             activateLoading(false);
             Alert.alert(
-              'Error',
-              'Something went wrong...',
+              'Erro',
+              'Oops! Algo deu errado...',
               [
                 {
                   text: 'Confirmar',
@@ -95,8 +113,8 @@ export default function Home() {
         signInWithEmailAndPassword(auth, email, password)
           .then(async () => {
             Alert.alert(
-              'Success',
-              'User loged in!',
+              'Sucesso',
+              'Usuário logado!',
               [
                 {
                   text: 'Confirmar',
@@ -112,8 +130,8 @@ export default function Home() {
           .catch(() => {
             activateLoading(false);
             Alert.alert(
-              'Error',
-              'Password or Email wrong',
+              'Erro',
+              'Oops! Algo deu errado...',
               [
                 {
                   text: 'Confirmar',

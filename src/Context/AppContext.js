@@ -75,12 +75,16 @@ export default function AppProvider({ children }) {
 
   async function getUser() {
     const user = getAuth();
+    let email = user.currentUser?.email
     if (user.currentUser !== null) {
       const dbRef = ref(database, `${user.currentUser.uid}/name`)
       await get(dbRef).then((snapshot) => {
+        if(user.currentUser.email.includes('.savelink')) {
+          email = 'Usuário local'
+        }
         setAuth({
           name: snapshot.val(),
-          email: user.currentUser.email
+          email: email
         })
       })
       activateLoading(false);
@@ -97,8 +101,8 @@ export default function AppProvider({ children }) {
       .then(() => {
 
         Alert.alert(
-          'Success',
-          'User logged out',
+          'Sucesso',
+          'Usuário deslogado.',
           [
             {
               text: 'Confirmar',

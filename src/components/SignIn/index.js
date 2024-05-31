@@ -1,11 +1,18 @@
 import React, { useContext, useState } from "react";
-import { Button, ButtonText, Container, Input, InputBox, Label, Title } from "./styles";
+import { 
+  Button, 
+  ButtonText, 
+  Container, 
+  Input, 
+  InputBox, 
+  Label, 
+  Title 
+} from "./styles";
 import firebase from "../../database/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Alert, Keyboard } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AppContext } from "../../Context/AppContext";
-import Loading from "../Loading";
 
 export default function SignIn() {
 
@@ -21,8 +28,8 @@ export default function SignIn() {
     signInWithEmailAndPassword(auth, email, password)
       .then(async () => {
         Alert.alert(
-          'Success',
-          'User loged in!',
+          'Sucesso',
+          'User logado!',
           [
             {
               text: 'Confirmar',
@@ -38,8 +45,8 @@ export default function SignIn() {
       .catch(() => {
         activateLoading(false);
         Alert.alert(
-          'Error',
-          'Password or Email wrong',
+          'Erro',
+          'Email ou senha incorreto(s)',
           [
             {
               text: 'Confirmar',
@@ -58,14 +65,14 @@ export default function SignIn() {
       <InputBox>
         <Label>Email:</Label>
         <Input
-          placeholder="Your email..."
+          placeholder="Informe seu email..."
           placeholderTextColor="#797B7A"
           onChangeText={(text) => setEmail(text)}
         />
 
-        <Label>Password:</Label>
+        <Label>Senha:</Label>
         <Input
-          placeholder="Your password..."
+          placeholder="Informe sua senha..."
           placeholderTextColor="#797B7A"
           onChangeText={(text) => setPassword(text)}
           secureTextEntry={true}

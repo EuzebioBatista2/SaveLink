@@ -1,6 +1,18 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { BodyItem, ChceckButton, CloseButton, DeleteButton, EditButton, Inputs, LinkText, LinkTextInput, Options, UrlButton, UrlText, UrlTextInput } from "./styles";
-import { Alert, Text, ToastAndroid, View } from "react-native";
+import { 
+  BodyItem, 
+  ChceckButton, 
+  CloseButton, 
+  DeleteButton, 
+  EditButton, 
+  Inputs, 
+  LinkText, 
+  Options, 
+  UrlButton, 
+  UrlText, 
+  UrlTextInput 
+} from "./styles";
+import { Alert, ToastAndroid, View } from "react-native";
 import { AppContext } from "../../Context/AppContext";
 import Clipboard from "@react-native-clipboard/clipboard";
 import Feather from 'react-native-vector-icons/Feather'

@@ -2,11 +2,17 @@ import React, { useContext, useEffect, useState } from "react";
 import { Alert, Keyboard, Text } from "react-native";
 import { AppContext } from "../../Context/AppContext";
 import Loading from "../../components/Loading";
-import { AddLinkBackground, Button, ButtonText, Buttons, Container, Forms } from "./styles";
+import { 
+  AddLinkBackground, 
+  Button, ButtonText, 
+  Buttons, 
+  Container, 
+  Forms 
+} from "./styles";
 import ContainerForm from "../../components/ContainerForm";
 import { getAuth } from "firebase/auth";
 import firebase from "../../database/firebase";
-import { get, push, ref, set, update } from "firebase/database";
+import { push, ref, set, update } from "firebase/database";
 import { useNavigation } from "@react-navigation/native";
 import LinkForm from "../../components/LinkForm";
 
@@ -132,7 +138,7 @@ export default function AddLink () {
   } else {
     return (
       <Container>
-        <AddLinkBackground source={require('../../images/Background.jpg')}>
+        <AddLinkBackground source={require('../../images/Background2.jpg')}>
           <Buttons>
             <Button
               checked={option === 'Container' ? true : false}
@@ -153,7 +159,7 @@ export default function AddLink () {
             {option === 'Container' || option === 'Link' ? (
               option === 'Container' ? <ContainerForm submit={submitContainer} /> : <LinkForm list={selectOptions} submit={submitLink} />
             ) : (
-              <Text style={{ color: '#5F6362', textAlign: 'center' }}>Nenhuma opções selecionada</Text>
+              <Text style={{ color: '#FFF', textAlign: 'center', fontSize: 20 }}>Nenhuma opção selecionada</Text>
             )}
           </Forms>
         </AddLinkBackground>

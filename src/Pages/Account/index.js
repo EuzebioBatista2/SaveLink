@@ -7,6 +7,7 @@ import {
   ImageButton,
   ImageButtonText,
   InfomationsText,
+  InfomationsTextTitle,
   Informations,
   LogoutButton,
   ProfileImage,
@@ -151,30 +152,33 @@ export default function Account() {
   } else {
     return (
       <Container>
-        <AccountBackground source={require('../../images/Background.jpg')}>
-          <Title>Conta</Title>
+        <AccountBackground source={require('../../images/Background2.jpg')}>
+          <Title>Dados do usuário</Title>
 
           <ProfileImage
             source={{ uri: image }}
           />
           <ButtonsContainer>
             <ImageButton onPress={photoAlbum}>
-              <ImageButtonText>Album</ImageButtonText>
+              <ImageButtonText>Álbum</ImageButtonText>
             </ImageButton>
             <ImageButton onPress={getPhotoByCamera}>
               <ImageButtonText>Câmera</ImageButtonText>
             </ImageButton>
           </ButtonsContainer>
+
           <Informations>
-            <InfomationsText>
-              Name: {auth && auth.name}
-            </InfomationsText>
-            <InfomationsText>
-              Email: {auth && auth.email}
-            </InfomationsText>
+            <InfomationsTextTitle>Nome: </InfomationsTextTitle>
+            <InfomationsText>{auth && auth.name}</InfomationsText>
           </Informations>
+
+          <Informations>
+            <InfomationsTextTitle>Email: </InfomationsTextTitle>
+            <InfomationsText>{auth && auth.email}</InfomationsText>
+          </Informations>
+
           <LogoutButton onPress={handleLogout}>
-            <ButtonText>Logout</ButtonText>
+            <ButtonText>Sair</ButtonText>
           </LogoutButton>
         </AccountBackground>
       </Container>

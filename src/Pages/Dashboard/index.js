@@ -79,10 +79,12 @@ export default function Dashboard() {
   else {
     return (
       <Container>
-        <DashboardBackground source={require('../../images/Background.jpg')}>
+        <DashboardBackground source={require('../../images/Background2.jpg')}>
           {data.length === 0 ? (
             <MessegeContainer>
-              <MessegeEmpty>Não há nenhum item registrado no momento</MessegeEmpty>
+              <MessegeEmpty>
+                Não há nenhum item registrado no momento.
+              </MessegeEmpty>
             </MessegeContainer>
           ) : (
             <FlatList
@@ -92,6 +94,7 @@ export default function Dashboard() {
                 <CardItem list={item} />
               )}
               showsVerticalScrollIndicator={false}
+              removeClippedSubviews={false}
             />
           )}
         </DashboardBackground>

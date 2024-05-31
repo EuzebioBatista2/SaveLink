@@ -21,8 +21,9 @@ export const UrlButton = styled.TouchableOpacity`
 export const UrlText = styled.Text`
   width: 90%;
   font-size: 16px;
-  color: #027CC1;
+  color: #2587EA;
   text-decoration: underline;
+  font-weight: bold;
   word-break: normal;
 `;
 
@@ -38,10 +39,9 @@ export const LinkTextInput = styled.TextInput`
   margin: 0px;
   padding: 0px;
 `;
-
 export const UrlTextInput = styled.TextInput`
   font-size: 16px;
-  color: #027CC1;
+  color: #2587EA;
   text-decoration: underline;
   word-break: normal;
   margin: 0px;

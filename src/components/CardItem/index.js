@@ -137,7 +137,6 @@ export default function CardItem({ list }) {
   return (
     <Container>
       <CardHeader>
-
         {editOptions ? (
           <HeaderTextInput
             value={containerText}
@@ -148,7 +147,6 @@ export default function CardItem({ list }) {
           <HeaderText>{containerText}</HeaderText>
         )}
 
-
         {editOptions ? (
           <Options>
             <CloseButton onPress={closeEditOptions}>
@@ -158,13 +156,13 @@ export default function CardItem({ list }) {
               <Feather name="check" color="#279846" size={22} />
             </ChceckButton>
             <DeleteButton onPress={deleteContainer}>
-              <Feather name="trash" color="#FFF" size={18} />
+              <Feather name="trash" color="#DA3E31" size={18} />
             </DeleteButton>
           </Options>
         ) : (
           <Options>
             <EditButton onPress={displayEditOptions}>
-              <Feather name="edit-2" color="#FBC219" size={18} />
+              <Feather name="edit-2" color="#FCC522" size={18} />
             </EditButton>
 
             <ToogleButton onPress={displayLinks}>

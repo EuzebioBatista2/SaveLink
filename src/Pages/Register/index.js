@@ -1,6 +1,14 @@
 import React, { useContext } from "react";
-import { ScrollView, Text, View } from "react-native";
-import { BrandContainer, Container, LineOne, LineTwo, PrincipalLogo, PrincipalText, ScrollContainer, SignBackground } from "./styles";
+import { ScrollView, View } from "react-native";
+import { 
+  BrandContainer, 
+  Container, 
+  LineOne, 
+  LineTwo, 
+  PrincipalLogo, 
+  PrincipalText, 
+  SignBackground 
+} from "./styles";
 import Feather from 'react-native-vector-icons/Feather';
 import SignUp from "../../components/SignUp";
 import { AppContext } from "../../Context/AppContext";

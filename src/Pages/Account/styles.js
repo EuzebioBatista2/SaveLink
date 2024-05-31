@@ -51,13 +51,19 @@ export const Title = styled.Text`
 `;
 
 export const Informations = styled.View`
-  gap: 10px;
-  margin-bottom: 20px;
+  flex-direction: row;
+  margin-bottom: 10px;
   align-items: center;
 `;
 
 export const InfomationsText = styled.Text`
   font-size: 20px;
+  color: #FFF;
+`;
+
+export const InfomationsTextTitle = styled.Text`
+  font-size: 20px;
+  font-weight: bold;
   color: #FFF;
 `;
 
@@ -69,6 +75,7 @@ export const LogoutButton = styled.TouchableOpacity`
   background-color: #FF5757;
   border-radius: 4px;
   border: 1px solid #fff;
+  margin-top: 10px;
 `;
 
 export const ButtonText = styled.Text`

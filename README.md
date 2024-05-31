@@ -37,6 +37,11 @@ npm npx react-native run-android
 
 ## Atualizações
 
+* 0.5.2 - 📝 Translate words and new design
+    * Translate words
+    * New design
+    * Update AutoLogin
+
 * 0.5.1 - 📝 Account and Dashabord pages
     * Add function to change the profile photo
     * Add edit and remove on Dashboard page

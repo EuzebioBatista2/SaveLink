@@ -21,6 +21,7 @@ export default function StackRoutes() {
         name="Login"
         component={Login}
         options={{
+          title: 'Página de login',
           headerStyle: {
             backgroundColor: '#1A1F1D',
           },
@@ -34,6 +35,7 @@ export default function StackRoutes() {
         name="Register"
         component={Register}
         options={{
+          title: 'Página de cadastro',
           headerStyle: {
             backgroundColor: '#1A1F1D',
           },

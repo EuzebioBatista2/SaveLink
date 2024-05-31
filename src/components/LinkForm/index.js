@@ -24,7 +24,7 @@ export default function LinkForm({ list, submit }) {
     return(
       <InputBox>
         <MessegeEmpty>
-          Não há nenhum CONTAINER cadastrado no momento
+          Não há nenhum CONTAINER cadastrado no momento.
         </MessegeEmpty>
       </InputBox>
     )
@@ -39,6 +39,7 @@ export default function LinkForm({ list, submit }) {
               setContainerKey(value)
             }}
             style={styles.selectInput}
+            dropdownIconColor="#FFF"
           >
             {selectItems}
           </Picker>

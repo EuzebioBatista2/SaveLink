@@ -26,6 +26,7 @@ export default function TabRoutes({ route }) {
         initialParams={params}
         component={Dashboard}
         options={{
+          title: 'Página inicial',
           tabBarIcon: ({ color, size }) => {
             return <Feather name="home" color={color} size={size} />
           }
@@ -37,6 +38,7 @@ export default function TabRoutes({ route }) {
         initialParams={params}
         component={AddLink}
         options={{
+          title: 'Adicionar link',
           tabBarIcon: ({ color, size }) => {
             return <Feather name="plus-circle" color={color} size={size} />
           }
@@ -48,6 +50,7 @@ export default function TabRoutes({ route }) {
         initialParams={params}
         component={Account}
         options={{
+          title: 'Conta',
           tabBarIcon: ({ color, size }) => {
             return <Feather name="user" color={color} size={size} />
           }

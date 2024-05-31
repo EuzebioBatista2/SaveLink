@@ -1,12 +1,19 @@
 import React, { useContext, useState } from "react";
-import { Button, ButtonText, Container, Input, InputBox, Label, Title } from "./styles";
+import { 
+  Button, 
+  ButtonText, 
+  Container, 
+  Input, 
+  InputBox, 
+  Label, 
+  Title 
+} from "./styles";
 import firebase from "../../database/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Alert, Keyboard, Text } from "react-native";
 import { ref, set } from "firebase/database";
 import { useNavigation } from "@react-navigation/native";
 import { AppContext } from "../../Context/AppContext";
-import Loading from "../Loading";
 
 export default function SignUp() {
 
@@ -32,8 +39,8 @@ export default function SignUp() {
       .then(() => {
 
         Alert.alert(
-          'Success',
-          'Register successfully!',
+          'Sucesso',
+          'Usuário registrado com sucesso!',
           [
             {
               text: 'Confirmar',
@@ -61,8 +68,8 @@ export default function SignUp() {
       .catch(() => {
         activateLoading(false);
         Alert.alert(
-          'Error',
-          'Something went wrong...',
+          'Erro',
+          'Oops! Algo deu errado......',
           [
             {
               text: 'Confirmar',
@@ -75,26 +82,26 @@ export default function SignUp() {
 
   return (
     <Container>
-      <Title>Registro</Title>
+      <Title>Registrar usuário</Title>
 
       <InputBox>
         <Label>Nome:</Label>
         <Input
-          placeholder="Seu nome..."
+          placeholder="Informe seu nome..."
           placeholderTextColor="#797B7A"
           onChangeText={(text) => setName(text)}
         />
 
         <Label>Email:</Label>
         <Input
-          placeholder="Seu email..."
+          placeholder="Informe seu email..."
           placeholderTextColor="#797B7A"
           onChangeText={(text) => setEmail(text)}
         />
 
         <Label>Senha:</Label>
         <Input
-          placeholder="Sua senha..."
+          placeholder="Informe sua senha..."
           placeholderTextColor="#797B7A"
           onChangeText={(text) => setPassword(text)}
           style={wrongPassword ? { borderWidth: 1, borderColor: '#FF0000' } : ''}

@@ -2,14 +2,14 @@ import styled from "styled-components/native";
 
 export const Container = styled.View`
   width: 300px;
-  border: 1px solid #E2E2E2;
+  border: 1px solid #2B2C32;
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
   margin-bottom: 4px;
 `;
 
 export const CardHeader = styled.View`
-  background-color: #FF5757;
+  background-color: #2B2C32;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

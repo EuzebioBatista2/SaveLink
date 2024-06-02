@@ -37,6 +37,9 @@ npm npx react-native run-android
 
 ## Atualizações
 
+* 0.5.4 - 🩹 Fix inputs
+    * Fix password input
+
 * 0.5.3 - 📝 New background on dashboard card
     * New color #2B2C32 -> #464646
 

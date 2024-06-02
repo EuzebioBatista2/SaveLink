@@ -38,9 +38,6 @@ export default function Dashboard() {
   useEffect(() => {
     activateLoading(true);
     getUser();
-  }, [])
-
-  useEffect(() => {
     activateLoading(true);
     getLinks();
   }, [])

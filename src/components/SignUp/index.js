@@ -105,6 +105,7 @@ export default function SignUp() {
           placeholderTextColor="#797B7A"
           onChangeText={(text) => setPassword(text)}
           style={wrongPassword ? { borderWidth: 1, borderColor: '#FF0000' } : ''}
+          secureTextEntry={true}
         />
 
         <Label>Confirmar senha:</Label>
@@ -113,6 +114,7 @@ export default function SignUp() {
           placeholderTextColor="#797B7A"
           onChangeText={(text) => setConfirmPassword(text)}
           style={wrongPassword ? { borderWidth: 1, borderColor: '#FF0000' } : ''}
+          secureTextEntry={true}
         />
 
         {wrongPassword && (

@@ -52,7 +52,7 @@ export default function CardItem({ list }) {
   function updateContainer() {
     const capitalizeTitle = containerText.charAt(0).toUpperCase() + containerText.slice(1);
     const userUid = getAuth().currentUser.uid
-    const dbRef = ref(database, `${userUid}/links/${list.key}`);
+    const dbRef = ref(database, `users/${userUid}/links/${list.key}`);
     update(dbRef, {
       title: capitalizeTitle
     })
@@ -64,7 +64,7 @@ export default function CardItem({ list }) {
 
   function deleteContainer() {
     const userUid = getAuth().currentUser.uid
-    const dbRef = ref(database, `${userUid}/links/${list.key}`);
+    const dbRef = ref(database, `users/${userUid}/links/${list.key}`);
     Alert.alert(
       'Ação perigosa',
       'Tem certeza que deseja excluir o container? Os valores contido no CONTAINER podem ser excluídos.',

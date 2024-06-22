@@ -1,48 +1,47 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { 
-  BodyItem, 
-  ChceckButton, 
-  CloseButton, 
-  DeleteButton, 
-  EditButton, 
-  Inputs, 
-  LinkText, 
-  Options, 
-  UrlButton, 
-  UrlText, 
-  UrlTextInput 
-} from "./styles";
-import { Alert, ToastAndroid, View } from "react-native";
-import { AppContext } from "../../Context/AppContext";
-import Clipboard from "@react-native-clipboard/clipboard";
-import Feather from 'react-native-vector-icons/Feather'
-import { getAuth } from "firebase/auth";
-import firebase from "../../database/firebase";
-import { ref, remove, update } from "firebase/database";
+import React, {useContext, useEffect, useRef, useState} from 'react';
+import {
+  BodyItem,
+  ChceckButton,
+  CloseButton,
+  DeleteButton,
+  EditButton,
+  Inputs,
+  LinkText,
+  Options,
+  UrlButton,
+  UrlText,
+  UrlTextInput,
+} from './styles';
+import {Alert, ToastAndroid, View} from 'react-native';
+import {AppContext} from '../../Context/AppContext';
+import Clipboard from '@react-native-clipboard/clipboard';
+import Feather from 'react-native-vector-icons/Feather';
+import {getAuth} from 'firebase/auth';
+import firebase from '../../database/firebase';
+import {ref, remove, update} from 'firebase/database';
 
-export default function CardLink({ list }) {
-
+export default function CardLink({list}) {
   const database = firebase.database;
 
   const urlLink = useRef(null);
 
-  const { 
-    webPage, 
-    activateWebPage, 
-    getSelect, 
-    handleSetOption, 
+  const {
+    webPage,
+    activateWebPage,
+    getSelect,
+    handleSetOption,
     activateLoading,
-    getLinks
+    getLinks,
   } = useContext(AppContext);
 
-  const [linkName, setLinkName] = useState(list.item[0])
-  const [linkUrl, setLinkUrl] = useState(list.item[1])
+  const [linkName, setLinkName] = useState(list.item[0]);
+  const [linkUrl, setLinkUrl] = useState(list.item[1]);
   const [editOptions, setEditOptions] = useState(false);
 
   function handleCopy() {
     Clipboard.setString(linkUrl);
     ToastAndroid.show('Texto copiado!', ToastAndroid.SHORT);
-  };
+  }
 
   function handleEdit() {
     setEditOptions(true);
@@ -54,53 +53,50 @@ export default function CardLink({ list }) {
   }
 
   function handleRemover() {
-    const userUid = getAuth().currentUser.uid
-    const dbRef = ref(database, `${userUid}/links/${list.item[2]}/items/${list.item[0]}`);
-    Alert.alert(
-      'Ação perigosa',
-      'Tem certeza que deseja excluir o link?',
-      [
-        {
-          text: 'Cancelar',
-          style: 'cancel'
+    const userUid = getAuth().currentUser.uid;
+    const dbRef = ref(
+      database,
+      `users/${userUid}/links/${list.item[2]}/items/${list.item[0]}`,
+    );
+    Alert.alert('Ação perigosa', 'Tem certeza que deseja excluir o link?', [
+      {
+        text: 'Cancelar',
+        style: 'cancel',
+      },
+      {
+        text: 'Confirmar',
+        onPress: () => {
+          remove(dbRef).then(() => {
+            activateLoading(true);
+            setEditOptions(false);
+            getLinks();
+            getSelect();
+            handleSetOption('');
+            Alert.alert('Sucesso', 'Link excluído.', [
+              {
+                text: 'Confirmar',
+                style: 'default',
+              },
+            ]);
+          });
         },
-        {
-          text: 'Confirmar',
-          onPress: () => {
-            remove(dbRef)
-              .then(() => {
-                activateLoading(true)
-                setEditOptions(false);
-                getLinks()
-                getSelect();
-                handleSetOption('');
-                Alert.alert(
-                  'Sucesso',
-                  'Link excluído.',
-                  [
-                    {
-                      text: 'Confirmar',
-                      style: 'default'
-                    }
-                  ]
-                )
-              })
-          }
-        }
-      ]
-    )
+      },
+    ]);
   }
 
   function handleCheck() {
     const lowerTitle = linkUrl.charAt(0).toLowerCase() + linkUrl.slice(1);
 
-    const userUid = getAuth().currentUser.uid
-    
-    const dbRef = ref(database, `${userUid}/links/${list.item[2]}/items/`);
+    const userUid = getAuth().currentUser.uid;
+
+    const dbRef = ref(
+      database,
+      `users/${userUid}/links/${list.item[2]}/items/`,
+    );
 
     update(dbRef, {
-      [linkName]: linkUrl
-    })
+      [linkName]: linkUrl,
+    });
     setEditOptions(false);
     getSelect();
     handleSetOption('');
@@ -116,30 +112,27 @@ export default function CardLink({ list }) {
 
   return (
     <BodyItem>
-      <View style={{ flexDirection: 'row' }}>
-
+      <View style={{flexDirection: 'row'}}>
         {editOptions ? (
           <Inputs>
             <LinkText>{linkName}: </LinkText>
-            <UrlTextInput 
-              onChangeText={(text) => setLinkUrl(text)}
+            <UrlTextInput
+              onChangeText={text => setLinkUrl(text)}
               value={linkUrl}
               ref={urlLink}
             />
           </Inputs>
         ) : (
-          <View style={{ flexDirection: 'row' }}>
+          <View style={{flexDirection: 'row'}}>
             <LinkText>{linkName}: </LinkText>
 
             <UrlButton
               onPress={() => activateWebPage(!webPage, linkUrl)}
-              onLongPress={() => handleCopy()}
-            >
+              onLongPress={() => handleCopy()}>
               <UrlText>{linkUrl}</UrlText>
             </UrlButton>
           </View>
         )}
-
 
         {editOptions ? (
           <Options>

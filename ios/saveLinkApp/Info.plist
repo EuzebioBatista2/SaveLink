@@ -48,6 +48,12 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>SelectImage</string>
+	<key>NSCameraUsageDescription</key>
+	<string>CaptureImage</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>CaptureMicro</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Feather.ttf</string>

@@ -37,6 +37,10 @@ npm npx react-native run-android
 
 ## Atualizações
 
+* 0.6.0 - 📝🩹 Path updated -> /users
+    * Update path
+    * Fix dotenv
+
 * 0.5.4 - 🩹 Fix inputs
     * Fix password input
 
